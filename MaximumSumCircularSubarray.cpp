@@ -1,6 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+/*
+    What the hell is the logic behind Solving this problem ??
+        a) Using Kadane's, we will find the continuous subarray with maximum Sum 
+        b) Using the Sum approach, First, we are calculating the sum by changing the sign of the array
+                    For the old array, If "Maximum sum circular Subarray had existed"  -->>
+                        Claim: The minimum sum subarray would have been the one left. How ??
+                Left_Over_Sum{After extracting the Maximum Subarray Sum} = Sum - Maximum Subarray on the original subarray using Kadane's Algorithm
+                Therefore we had finally calculated the maximum of the two values using normal Algo and one with Circular subarray :)
+*/
 int max_subarray(vector<int> v){
     int curr_sum = 0;
     int max_sum = 0;

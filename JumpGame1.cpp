@@ -25,10 +25,13 @@ bool jump_game(vector<int> &v) {
 bool jumpgame(vector<int> &v){
     int reachable = 0;          // that is we are finding which one os the reachable node
     for(int i=0; i<v.size(); i++){
+        if(i > reachable){
+            return false;
+        }
         reachable = max(i+v[i],reachable);
-    }
-    if(reachable >= v.size() - 1){
-        return true;
+        if(reachable >= v.size() - 1){
+            return true;
+        }    
     }
     return false;
 }

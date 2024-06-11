@@ -1,33 +1,34 @@
 #include<bits/stdc++.h>
-using namespace std;
+using namespace std;;
 
-int trap(vector<int> &height){
-    int n = height.size();
-    vector<int> left(n);
-    vector<int> right(n);
-    int maxl = height[0];
-    int maxr = height[height.size()-1];
-    for(int i=0; i<n; i++){
-        maxl = max(maxl,height[i]);             // Maximum height from Left
-        left[i]=maxl;
+int candy(vector<int> &ratings){
+    int n = ratings.size();
+    int ans = n;
+    if(n == 2){
+        if(ratings[0] != ratings[1]){
+            ans+=1;
+        }
+    }else{
+        for(int i=0; i<n; i++){
+            if(i == 0 && ratings[i] != ratings[i+1]){
+                ans += 1;
+            }else if(i == n-1 && ratings[i] != ratings[i-1]){
+                ans += 1;
+            }else if(ratings[i] != ratings[i+1]){
+                ans += 1;
+            }
+        }
     }
-    for(int j=height.size()-1; j>=0; j--){
-        maxr = max(maxr,height[j]);             // Maximum height from right
-        right[j]=maxr;
-    }
-    int ans = 0;
-    for(int i=0; i<n; i++){
-        ans = ans + min(left[i],right[i]) - height[i];
-    }
-    return ans;
+    return ans - 1;
 }
 
 int main(){
     int n;  cin>>n;
-    vector<int> height(n);
-    for(int i=0; i<n; i++){ 
-        cin >> height[i];
+    vector<int> ratings(n);
+    for(int i=0; i<n; i++)
+    {
+        cin >> ratings[i];
     }
-    cout << trap(height) << endl;
+    cout << candy(ratings) << endl;
     return 0;
 }
